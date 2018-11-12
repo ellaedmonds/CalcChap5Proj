@@ -72,13 +72,13 @@ derivlist=[]                                #here we will make a list of the der
 derivlist1=[]
 for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.01)
-    derivlist.append(round(deriv,2))
-    derivlist1.append(deriv)
-print (derivlist)
+    derivlist1.append(round(deriv,2))
+    derivlist.append(deriv)
+print (derivlist1)
 
 
 #deriv/x value/y value zip
-xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist))
+xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist1))
 #print(xyderivzip)
 
 
@@ -95,15 +95,17 @@ for d in xyderivzip:
     if d[2]>=0:
         increasinglist.append(d[0])
     elif d[2]<=0:
-        decreasinglist.append(d[0])         #work on how to make it do it if it changes a bunch
+        decreasinglist.append(d[0])         
 #print (increasinglist)
 #print (decreasinglist)
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
-print('Your function is increasing from' increasinglist[0] 'to' increasinglist[lengthincreasing])
-print('Your function is decreasing from' decreasinglist[0] 'to' decreasinglist[lengthdecreasing])
+print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
+print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
 
-'''
+#work on the print statements above to make it work when it changes from increasing to decreasing more than once
+
+
 #second derivative list 
 y2coordlist1=[]
 for d in derivlist:
@@ -136,11 +138,6 @@ print(secondderivlist)
 
 
     '''
-
-
-
-    
-
 
 
 
