@@ -22,10 +22,10 @@ x1=int(input("Where do you want your interval to start? "))
 x2=int(input("Where do you want your interval to end? "))
 #step = float(input("What do you want the step to be? "))
 
-#function
+
 print(function)
 
-#x values
+
 xcoordlist=[]                               #x values
 for i in range(x1,x2+1):
     if i == x2:
@@ -34,16 +34,17 @@ for i in range(x1,x2+1):
         for m in [.0,.1,.2,.3,.4,.5,.6,.7,.8,.9]:
             #print(i+m)
             xcoordlist.append(i+m)
-print(xcoordlist)
+#print(xcoordlist)
     
-# y values
+
 ycoordlist=[]                               # y values
 for r in xcoordlist:
     x=r
     Locfunction=function.lower()
     y=eval(Locfunction)
     ycoordlist.append(y)
-print(ycoordlist)
+#print(ycoordlist)
+
 
 ycoordlist1=[]                              #this will find the a+.001 for the dq
 for r in xcoordlist:
@@ -51,7 +52,8 @@ for r in xcoordlist:
     Locfunction=function.lower()
     y=eval(Locfunction)
     ycoordlist1.append(y)
-print(ycoordlist1)
+#print(ycoordlist1)
+
 
 ycoordlist2=[]                              #this will find the a+.001 for the sdq
 for r in xcoordlist:
@@ -59,49 +61,49 @@ for r in xcoordlist:
     Locfunction=function.lower()
     y=eval(Locfunction)
     ycoordlist2.append(y)
-print(ycoordlist2)
+#print(ycoordlist2)
+
 
 intervalnum=len(ycoordlist1)                #this tells us how long our cordinate lists are 
 print(intervalnum)                              #so we know how long to run the loop
 
-# derivatives
+
 derivlist=[]                                #here we will make a list of the derivatives
+derivlist1=[]
 for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.01)
-    derivlist.append(deriv)
+    derivlist.append(round(deriv,2))
+    derivlist1.append(deriv)
 print (derivlist)
+
 
 #deriv/x value/y value zip
 xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist))
-print(xyderivzip)
+#print(xyderivzip)
 
-# extrema
-extremalist=[]
+
+extremalist=[]                              #here we find where d1 = 0
 for d in xyderivzip:
    if d[2]==0:
     extremalist.append((d[0], d[1]))
-print (extremalist)
+print ('the first derivative of your equation is equal to zero at:',extremalist)
 
-# increasing interval(s)
-increasinglist=[]
+
+increasinglist=[]                           #here we find the interval where it inc/dec
+decreasinglist=[]
 for d in xyderivzip:
     if d[2]>=0:
         increasinglist.append(d[0])
-print (increasinglist)
+    elif d[2]<=0:
+        decreasinglist.append(d[0])         #work on how to make it do it if it changes a bunch
+#print (increasinglist)
+#print (decreasinglist)
 lengthincreasing=len(increasinglist)
-print(lengthincreasing)
-#print('Your function is increasing from' increasinglist[0] 'to' increasinglist[lengthincreasing])
-
-#decreasing interval(s)
-decreasinglist=[]
-for d in xyderivzip:
-    if d[2]<=0:
-        decreasinglist.append(d[0])
-print (decreasinglist)
 lengthdecreasing=len(decreasinglist)
-#print('Your function is decreasing from' decreasinglist[0] 'to' decreasinglist[lengthdecreasing])
+print('Your function is increasing from' increasinglist[0] 'to' increasinglist[lengthincreasing])
+print('Your function is decreasing from' decreasinglist[0] 'to' decreasinglist[lengthdecreasing])
 
-
+'''
 #second derivative list 
 y2coordlist1=[]
 for d in derivlist:
@@ -130,6 +132,10 @@ print(secondderivlist)
 # concave up intervals
 
 # concave down intervals
+
+
+
+    '''
 
 
 
