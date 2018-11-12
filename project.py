@@ -26,41 +26,46 @@ x2=int(input("Where do you want your interval to end? "))
 print(function)
 
 #x values
-xcoordlist=[]
-for r in range(x1,(x2+1)):
-    xcoordlist.append(r)
+xcoordlist=[]                               #x values
+for i in range(x1,x2+1):
+    if i == x2:
+        xcoordlist.append(i+.0)
+    else:
+        for m in [.0,.1,.2,.3,.4,.5,.6,.7,.8,.9]:
+            #print(i+m)
+            xcoordlist.append(i+m)
 print(xcoordlist)
     
 # y values
-ycoordlist=[]
-for r in range(x1, (x2+1)):
+ycoordlist=[]                               # y values
+for r in xcoordlist:
     x=r
     Locfunction=function.lower()
     y=eval(Locfunction)
     ycoordlist.append(y)
 print(ycoordlist)
 
-ycoordlist1=[]
-for r in range(x1, (x2+1)):
+ycoordlist1=[]                              #this will find the a+.001 for the dq
+for r in xcoordlist:
     x=r+0.001
     Locfunction=function.lower()
     y=eval(Locfunction)
     ycoordlist1.append(y)
 print(ycoordlist1)
 
-ycoordlist2=[]
-for r in range(x1, (x2+1)):
+ycoordlist2=[]                              #this will find the a+.001 for the sdq
+for r in xcoordlist:
     x=r-0.001
     Locfunction=function.lower()
     y=eval(Locfunction)
     ycoordlist2.append(y)
 print(ycoordlist2)
 
-intervalnum=len(ycoordlist1)
-print(intervalnum)
+intervalnum=len(ycoordlist1)                #this tells us how long our cordinate lists are 
+print(intervalnum)                              #so we know how long to run the loop
 
 # derivatives
-derivlist=[]
+derivlist=[]                                #here we will make a list of the derivatives
 for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.01)
     derivlist.append(deriv)
@@ -125,6 +130,7 @@ print(secondderivlist)
 # concave up intervals
 
 # concave down intervals
+
 
 
     
