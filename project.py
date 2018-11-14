@@ -25,6 +25,9 @@ x2=int(input("Where do you want your interval to end? "))
 
 print(function)
 
+if log10 or log or log2 in function:
+    if x1<0:
+        x1=0
 
 xcoordlist=[]                               #x values
 for i in range(x1,x2+1):
@@ -83,26 +86,29 @@ xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist1))
 
 
 extremalist=[]                              #here we find where d1 = 0
-for d in xyderivzip:
-   if d[2]==0:
-    extremalist.append((d[0], d[1]))
-print ('the first derivative of your equation is equal to zero at:',extremalist)
-
-
 increasinglist=[]                           #here we find the interval where it inc/dec
 decreasinglist=[]
 for d in xyderivzip:
+    if d[2]==0:
+        extremalist.append((d[0], d[1]))
     if d[2]>=0:
         increasinglist.append(d[0])
     elif d[2]<=0:
-        decreasinglist.append(d[0])         
-#print (increasinglist)
-#print (decreasinglist)
+        decreasinglist.append(d[0]) 
+print ('the first derivative of your equation is equal to zero at:',extremalist)
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
-print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
-print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
 
+if lengthdecreasing == 0:
+    print('Your function is never decreasing')
+else:
+    print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
+    
+if lengthincreasing == 0:
+    print('Your function is never increasing')
+else:
+    print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
+ 
 #work on the print statements above to make it work when it changes from increasing to decreasing more than once
 
 #second derivatives
@@ -123,7 +129,7 @@ for i in range(interval2num):
     deriv2list.append(round(deriv2,2))
 print (deriv2list)
 
-'''xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
+xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
 print(xyderiv2zip)
 
 # points of inflection
@@ -159,7 +165,7 @@ for d in xyderiv2zip:
 print (concavedownlist)
 lengthconcavedown=len(concavedownlist)
 #print('Your function is concavedown from' concavedownlist[0] 'to' concavedownlist[lengthconcavedown])
-'''
+
 
 
 
