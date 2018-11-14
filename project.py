@@ -25,9 +25,9 @@ x2=int(input("Where do you want your interval to end? "))
 
 print(function)
 
-if log10 or log or log2 in function:
-    if x1<0:
-        x1=0
+#if log10 or log or log2 in function:
+#    if x1<0:
+#        x1=0
 
 xcoordlist=[]                               #x values
 for i in range(x1,x2+1):
@@ -77,7 +77,7 @@ for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.01)
     derivlist1.append(round(deriv,2))
     derivlist.append(deriv)
-print (derivlist1)
+#print (derivlist1)
 
 
 #deriv/x value/y value zip
@@ -99,9 +99,24 @@ print ('the first derivative of your equation is equal to zero at:',extremalist)
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
 
+notend = []
+decstart = []
+decend = []
+
 if lengthdecreasing == 0:
     print('Your function is never decreasing')
 else:
+    for d in decreasinglist:
+        b=d-1
+        c=d+1
+        print(d[0])
+        #if e-.1 != decreasinglist[b[0]]:
+            #decstart.append(i)
+        #elif e+.1  != decreasinglist[c[0]]:
+            #decend.append(i)
+#print(decstart)
+
+'''print(decend)   
     print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
     
 if lengthincreasing == 0:
@@ -166,7 +181,7 @@ print (concavedownlist)
 lengthconcavedown=len(concavedownlist)
 #print('Your function is concavedown from' concavedownlist[0] 'to' concavedownlist[lengthconcavedown])
 
-
+'''
 
 
     
