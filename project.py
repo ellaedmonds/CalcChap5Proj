@@ -74,7 +74,7 @@ print(intervalnum)                              #so we know how long to run the 
 derivlist=[]                                #here we will make a list of the derivatives
 derivlist1=[]
 for s in range(intervalnum):
-    deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.01)
+    deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.001)
     derivlist1.append(round(deriv,2))
     derivlist.append(deriv)
 #print (derivlist1)
@@ -93,6 +93,7 @@ for d in xyderivzip:
         extremalist.append((d[0], d[1]))
     if d[2]>=0:
         increasinglist.append(d[0])
+        
     elif d[2]<=0:
         decreasinglist.append(d[0]) 
 print ('the first derivative of your equation is equal to zero at:',extremalist)
@@ -106,17 +107,19 @@ decend = []
 if lengthdecreasing == 0:
     print('Your function is never decreasing')
 else:
+    c=1
+    b=0
     for d in decreasinglist:
-        b=d-1
-        c=d+1
-        print(d[0])
-        #if e-.1 != decreasinglist[b[0]]:
-            #decstart.append(i)
-        #elif e+.1  != decreasinglist[c[0]]:
-            #decend.append(i)
-#print(decstart)
-
-'''print(decend)   
+        print(d)
+        if d-.1 != decreasinglist[b] or d==x1:
+            decstart.append(d)
+        elif d+.1 != decreasinglist[c]:
+            decend.append(d)
+        b+=1
+        c+=1
+print(decstart)
+'''
+print(decend)   
     print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
     
 if lengthincreasing == 0:
