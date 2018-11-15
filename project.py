@@ -95,13 +95,13 @@ for d in xyderivzip:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > C[1]:
                 print((d[0],round(d[1],2)),"is a local max")
-            zero.append((' ',d[0],'+'))
+        zero.append((' ',d[0],'+'))
         if d[2] < 0:
             if d[1] < B[1]:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > B[1]:
                 print((d[0],round(d[1],2)),"is a local max")
-            zero.append((' ',d[0],'-'))
+        zero.append((' ',d[0],'-'))
     elif d[0] == xcoordlist[-1]:
         if d[2] > 0:
             if d[1] < C[1]:
@@ -186,84 +186,7 @@ else:
 
     
 
-'''incstart = []
-incend = []
-decstart = []
-decend = []
-for d in zero:
-    m = xyderivzip.index(d)
-    A= xyderivzip[m-1]
-    if m
-        B= xyderivzip[m+1]
-    if A[2] > 0:
-        incstart.append(d[0])
-    if A[2] < 0:
-        decstart.append(d[0])
-    if B[2] > 0:
-        incstart.append(d[0])
-    if B[2] < 0:
-        incstart.append(d[0])
-print(decstart)
-print(decend)
-print(incstart)
-print(incend)
-
-lengthincreasing=len(increasinglist)
-lengthdecreasing=len(decreasinglist)
-if lengthincreasing == 0:
-    print('Your function is never increasing')
-else:
-    print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
-    
-if lengthdecreasing == 0:
-    print('Your function is never decreasing')
-else:
-    print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
-
-
-
-
-lengthincreasing=len(increasinglist)
-lengthdecreasing=len(decreasinglist)
-
-notend = []
-decstart = []
-decend = []
-
-if lengthdecreasing == 0:
-    print('Your function is never decreasing')
-else:
-    c=1
-    b=-1
-    for d in decreasinglist:
-        print(d)
-        print(decreasinglist[b])
-        print(decreasinglist[c])
-        if d==x1 or d==decreasinglist[0]:
-            decstart.append(d)
-            print(d,"starta")
-        elif (d-.1) == decreasinglist[b]:
-            print(d,"middle")
-        elif d==x2 or d==decreasinglist[-1]:
-            decend.append(d)
-            print(d,"enda")
-        elif (d+.1) == decreasinglist[c]:
-            decend.append(d)
-            print(d,"middle")
-        print()
-        b+=1
-        c+=1
-print(decstart)
-
-print(decend)   
-    print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
-    
-if lengthincreasing == 0:
-    print('Your function is never increasing')
-else:
-    print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
- 
-#work on the print statements above to make it work when it changes from increasing to decreasing more than once
+'''
 
 #second derivatives
 y2coordlist1=[]
