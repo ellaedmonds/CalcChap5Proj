@@ -102,7 +102,7 @@ for d in xyderivzip:
             increasinglist.append(d[0])
         elif d[2] < 0:
             decreasinglist.append(d[0])
-    if B[2]*C[2] > 0:
+    if B[2]*C[2] > 0 :
         if d[2] > 0:
             increasinglist.append(d[0])
         elif d[2] < 0:
@@ -117,33 +117,74 @@ for d in xyderivzip:
         elif B[2] > 0 and C[2] < 0:
             print((d[0],round(d[1],2)),"is a local max")
             decreasinglist.append(d[0])
-        zero.append(d)
+        if d[0] == x1:
+            before = ' '
+        elif B[2] < 0:
+            before = '-'
+        elif B[2] > 0:
+            before = '+'
+        if d[0] == x2:
+            after = ' '
+        elif C[2] < 0:
+            after = '-'
+        elif C[2] > 0:
+            after = '+'
+        zero.append((before,d[0],after))
     b+=1
     c+=1
     if c == e:
         c=0
 
+print(zero)
+
 incstart = []
 incend = []
 decstart = []
 decend = []
-b=-1
-c=1
-for d in xyderivzip:
-    B=xyderivzip[b]
-    C=xyderivzip[c]
-    if B[2]>0 and B[2]*C[2] < 0:
-        incend.append(d[0])
-    elif B[2]<0 and B[2]*C[2] < 0:
-        decend.append(d[0])
-    elif C[2]>0 and B[2]*C[2] < 0:
+for d in zero:
+    if d[0] == '+':
+        incend.append(d[1])
+    elif d[0] == '-':
+        decend.append(d[1])
+    if d[2] == '+':
+        incstart.append(d[1])
+    elif d[2] == '-':
+        decstart.append(d[1])
+        
+print(incstart)
+print(incend)
+print(decstart)
+print(decend)
+
+print("Your function is increasing from:")
+for d in incstart:
+    m = incstart.index(d)
+    print(d,"to",incend[m])
+    
+print("Your function is decreasing from:")
+for d in decstart:
+    m = decstart.index(d)
+    print(d,"to",decend[m])    
+
+    
+
+'''incstart = []
+incend = []
+decstart = []
+decend = []
+for d in zero:
+    m = xyderivzip.index(d)
+    A= xyderivzip[m-1]
+    if m
+        B= xyderivzip[m+1]
+    if A[2] > 0:
         incstart.append(d[0])
-    elif C[2]<0 and B[2]*C[2] < 0:
+    if A[2] < 0:
         decstart.append(d[0])
-    b+=1
-    c+=1
-    if c == e:
-        c=0
+    if B[2] > 0:
+        incstart.append(d[0])
+    if B[2] < 0:
+        incstart.append(d[0])
 print(decstart)
 print(decend)
 print(incstart)
@@ -163,7 +204,7 @@ else:
 
 
 
-'''
+
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
 
