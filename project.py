@@ -139,7 +139,7 @@ for d in xyderivzip:
     if c == e:
         c=0
 
-print ('the first derivative of your equation is equal to zero at:',extremalist)
+#print ('the first derivative of your equation is equal to zero at:',extremalist)
 
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
