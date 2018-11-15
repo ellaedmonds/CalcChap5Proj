@@ -96,11 +96,11 @@ for d in xyderivzip:
             zero.append((' ',d[0],'+'))
         if d[2] < 0:
             print((d[0],round(d[1],2)),"is a local min")
-            zero.append((' ',d[0],'+'))
+            zero.append((' ',d[0],'-'))
     elif d[0] == xcoordlist[-1]:
         if d[2] > 0:
             print((d[0],round(d[1],2)),"is a local max")
-            zero.append(('-',d[0],' '))
+            zero.append(('+',d[0],' '))
         if d[2] < 0:
             print((d[0],round(d[1],2)),"is a local min")
             zero.append(('-',d[0],' '))
@@ -132,15 +132,11 @@ for d in xyderivzip:
             elif B[2] > 0 and C[2] < 0:
                 print((d[0],round(d[1],2)),"is a local max")
                 decreasinglist.append(d[0])
-            if d[0] == x1:
-                before = ' '
-            elif B[2] < 0:
+            if B[2] < 0:
                 before = '-'
             elif B[2] > 0:
                 before = '+'
-            if d[0] == x2:
-                after = ' '
-            elif C[2] < 0:
+            if C[2] < 0:
                 after = '-'
             elif C[2] > 0:
                 after = '+'
