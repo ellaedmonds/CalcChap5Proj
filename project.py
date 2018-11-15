@@ -25,9 +25,6 @@ x2=int(input("Where do you want your interval to end? "))
 
 print(function)
 
-#if log10 or log or log2 in function:
-#    if x1<0:
-#        x1=0
 
 xcoordlist=[]                               #x values
 for i in range(x1,x2+1):
@@ -36,7 +33,7 @@ for i in range(x1,x2+1):
     else:
         for m in [.0,.1,.2,.3,.4,.5,.6,.7,.8,.9]:
             #print(i+m)
-            xcoordlist.append(i+m)
+            xcoordlist.append(round((i+m),2))
 #print(xcoordlist)
     
 
@@ -88,38 +85,49 @@ xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist1))
 extremalist=[]                              #here we find where d1 = 0
 increasinglist=[]                           #here we find the interval where it inc/dec
 decreasinglist=[]
-sign = []
+zero=[]
+b=-1
+c=1
+e=len(xyderivzip)
+print(e)
 for d in xyderivzip:
-    if d[2]==0:
-        extremalist.append((d[0], d[1]))
-        sign.append('0')
-    elif d[2]>=0:
+    B=xyderivzip[b]
+    C=xyderivzip[c]
+    if d[2]>0:
         increasinglist.append(d[0])
-        sign.append('+')
-    elif d[2]<=0:
+    elif d[2]<0:
         decreasinglist.append(d[0]) 
-        sign.append('-')
+    elif d[2]==0:
+        extremalist.append((d[0], d[1]))
+        increasinglist.append(d[0])
+        decreasinglist.append(d[0])
+        if B[2] < 0 and C[2] < 0:
+            print((d[0],d[1]),"is just a 0")
+        elif B[2] < 0 and C[2] > 0:
+            print((d[0],d[1]),"is a local min")
+        elif B[2] > 0 and C[2] < 0:
+            print((d[0],d[1]),"is a local max")
+        zero.append(d)
+    b+=1
+    c+=1
+    if c == e:
+        c=0
+
 print ('the first derivative of your equation is equal to zero at:',extremalist)
 
-miniinc=[]
-minidec=[]
-inc=[]
-dec=[]
-b=0
-for m in xcoordlist:
-    if sign[b] == '+':
-        miniinc.append(d[0])
-    elif sign[b] == '-':
-        minidec.append(d[0])
-    elif sign[b] == '0':
-        inc.append(miniinc)
-        dec.append(minidec)
-        miniinc=[]
-        minidec=[]
-    b+=1
-print(inc)
-print()
-print(dec)
+lengthincreasing=len(increasinglist)
+lengthdecreasing=len(decreasinglist)
+if lengthincreasing == 0:
+    print('Your function is never increasing')
+else:
+    print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
+    
+if lengthdecreasing == 0:
+    print('Your function is never decreasing')
+else:
+    print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
+
+
 
 '''
 lengthincreasing=len(increasinglist)
