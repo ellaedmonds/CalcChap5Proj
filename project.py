@@ -112,7 +112,8 @@ for d in xyderivzip:
     c+=1
     if c == e:
         c=0
-        
+b = -1
+c = 1
 for d in xyderivzip:
     B=xyderivzip[b]
     C=xyderivzip[c]
@@ -121,7 +122,7 @@ for d in xyderivzip:
             increasinglist.append(d[0])
         elif d[2] < 0:
             decreasinglist.append(d[0]) 
-    elif B[2]*C[2] < 0 :
+    elif B[2]*C[2] < 0:
         extremalist.append((d[0], d[1]))
         increasinglist.append(d[0])
         decreasinglist.append(d[0])
