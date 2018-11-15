@@ -74,11 +74,11 @@ for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.001)
     derivlist1.append(round(deriv,2))
     derivlist.append(deriv)
-#print (derivlist1)
+#print (derivlist)
 
 
 #deriv/x value/y value zip
-xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist1))
+xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist))
 #print(xyderivzip)
 
 
@@ -107,22 +107,12 @@ for d in xyderivzip:
     else: 
         B=xyderivzip[b]
         C=xyderivzip[c]
-        if d[0] == x1:
-            if d[2] > 0:
-                increasinglist.append(d[0])
-            elif d[2] < 0:
-                decreasinglist.append(d[0])
-        elif d[0] == x2:
-            if d[2] > 0:
-                increasinglist.append(d[0])
-            elif d[2] < 0:
-                decreasinglist.append(d[0])
-        if B[2]*C[2] > 0:
+        if B[2]*d[2] > 0:
             if d[2] > 0:
                 increasinglist.append(d[0])
             elif d[2] < 0:
                 decreasinglist.append(d[0]) 
-        elif B[2]*C[2] < 0:
+        elif B[2]*d[2] <= 0:
             extremalist.append((d[0], d[1]))
             if B[2] < 0 and C[2] < 0:
                 print((d[0],round(d[1],2)),"is just a 0")
@@ -140,7 +130,10 @@ for d in xyderivzip:
                 after = '-'
             elif C[2] > 0:
                 after = '+'
-            zero.append((before,d[0],after))
+            if d[2] == 0:
+                zero.append((before,d[0],after))
+            elif B[2] != 0 and C[2] !=0:
+                zero.append((before,(B[0]+d[0])/2,after))
     b+=1
     c+=1
     if c == e:
