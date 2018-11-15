@@ -88,15 +88,40 @@ xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist1))
 extremalist=[]                              #here we find where d1 = 0
 increasinglist=[]                           #here we find the interval where it inc/dec
 decreasinglist=[]
+sign = []
 for d in xyderivzip:
     if d[2]==0:
         extremalist.append((d[0], d[1]))
-    if d[2]>=0:
+        sign.append('0')
+    elif d[2]>=0:
         increasinglist.append(d[0])
-        
+        sign.append('+')
     elif d[2]<=0:
         decreasinglist.append(d[0]) 
+        sign.append('-')
 print ('the first derivative of your equation is equal to zero at:',extremalist)
+
+miniinc=[]
+minidec=[]
+inc=[]
+dec=[]
+b=0
+for m in xcoordlist:
+    if sign[b] == '+':
+        miniinc.append(d[0])
+    elif sign[b] == '-':
+        minidec.append(d[0])
+    elif sign[b] == '0':
+        inc.append(miniinc)
+        dec.append(minidec)
+        miniinc=[]
+        minidec=[]
+    b+=1
+print(inc)
+print()
+print(dec)
+
+'''
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
 
@@ -108,17 +133,27 @@ if lengthdecreasing == 0:
     print('Your function is never decreasing')
 else:
     c=1
-    b=0
+    b=-1
     for d in decreasinglist:
         print(d)
-        if d-.1 != decreasinglist[b] or d==x1:
+        print(decreasinglist[b])
+        print(decreasinglist[c])
+        if d==x1 or d==decreasinglist[0]:
             decstart.append(d)
-        elif d+.1 != decreasinglist[c]:
+            print(d,"starta")
+        elif (d-.1) == decreasinglist[b]:
+            print(d,"middle")
+        elif d==x2 or d==decreasinglist[-1]:
             decend.append(d)
+            print(d,"enda")
+        elif (d+.1) == decreasinglist[c]:
+            decend.append(d)
+            print(d,"middle")
+        print()
         b+=1
         c+=1
 print(decstart)
-'''
+
 print(decend)   
     print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
     
