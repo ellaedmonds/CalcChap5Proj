@@ -123,18 +123,31 @@ for d in xyderivzip:
     if c == e:
         c=0
 
+incstart = []
+incend = []
+decstart = []
+decend = []
+b=-1
+c=1
 for d in xyderivzip:
     B=xyderivzip[b]
     C=xyderivzip[c]
-    if d[2]>0:
-        increasinglist.append(d[0])
-    elif d[2]<0:
-        decreasinglist.append(d[0]) 
-    elif d[2]==0:
-        extremalist.append((d[0], d[1]))
-        increasinglist.append(d[0])
-        decreasinglist.append(d[0])
-
+    if B[2]>0 and B[2]*C[2] < 0:
+        incend.append(d[0])
+    elif B[2]<0 and B[2]*C[2] < 0:
+        decend.append(d[0])
+    elif C[2]>0 and B[2]*C[2] < 0:
+        incstart.append(d[0])
+    elif C[2]<0 and B[2]*C[2] < 0:
+        decstart.append(d[0])
+    b+=1
+    c+=1
+    if c == e:
+        c=0
+print(decstart)
+print(decend)
+print(incstart)
+print(incend)
 
 lengthincreasing=len(increasinglist)
 lengthdecreasing=len(decreasinglist)
