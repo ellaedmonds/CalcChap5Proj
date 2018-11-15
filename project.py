@@ -85,8 +85,8 @@ xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist1))
 extremalist=[]                              #here we find where d1 = 0
 increasinglist=[]                           #here we find the interval where it inc/dec
 decreasinglist=[]
-zero=[]
-'''b=-1
+'''zero=[]
+b=-1
 c=1
 e=len(xyderivzip)
 print(e)
@@ -111,13 +111,39 @@ for d in xyderivzip:
     b+=1
     c+=1
     if c == e:
-        c=0'''
+        c=0
+        
+lengthincreasing=len(increasinglist)
+lengthdecreasing=len(decreasinglist)
+if lengthincreasing == 0:
+    print('Your function is never increasing')
+else:
+    print('Your function is increasing from',increasinglist[0],'to',increasinglist[-1])
+    
+if lengthdecreasing == 0:
+    print('Your function is never decreasing')
+else:
+    print('Your function is decreasing from',decreasinglist[0],'to',decreasinglist[-1])
+print()'''
+increasinglist=[]                           #here we find the interval where it inc/dec
+decreasinglist=[]
+zero = []
 b = -1
 c = 1
 e=len(xyderivzip)
 for d in xyderivzip:
     B=xyderivzip[b]
     C=xyderivzip[c]
+    if d[0] == x1:
+        if d[2] > 0:
+            increasinglist.append(d[0])
+        elif d[2] < 0:
+            decreasinglist.append(d[0])
+    elif d[0] == x2:
+        if d[2] > 0:
+            increasinglist.append(d[0])
+        elif d[2] < 0:
+            decreasinglist.append(d[0])
     if B[2]*C[2] > 0:
         if d[2] > 0:
             increasinglist.append(d[0])
@@ -125,19 +151,31 @@ for d in xyderivzip:
             decreasinglist.append(d[0]) 
     elif B[2]*C[2] < 0:
         extremalist.append((d[0], d[1]))
-        increasinglist.append(d[0])
-        decreasinglist.append(d[0])
         if B[2] < 0 and C[2] < 0:
             print((d[0],round(d[1],2)),"is just a 0")
         elif B[2] < 0 and C[2] > 0:
             print((d[0],round(d[1],2)),"is a local min")
+            increasinglist.append(d[0])
         elif B[2] > 0 and C[2] < 0:
             print((d[0],round(d[1],2)),"is a local max")
+            decreasinglist.append(d[0])
         zero.append(d)
     b+=1
     c+=1
     if c == e:
         c=0
+
+for d in xyderivzip:
+    B=xyderivzip[b]
+    C=xyderivzip[c]
+    if d[2]>0:
+        increasinglist.append(d[0])
+    elif d[2]<0:
+        decreasinglist.append(d[0]) 
+    elif d[2]==0:
+        extremalist.append((d[0], d[1]))
+        increasinglist.append(d[0])
+        decreasinglist.append(d[0])
 
 #print ('the first derivative of your equation is equal to zero at:',extremalist)
 
