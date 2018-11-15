@@ -112,6 +112,30 @@ for d in xyderivzip:
     c+=1
     if c == e:
         c=0
+        
+for d in xyderivzip:
+    B=xyderivzip[b]
+    C=xyderivzip[c]
+    if B[2]*C[2] > 0:
+        if d[2] > 0:
+            increasinglist.append(d[0])
+        elif d[2] < 0:
+            decreasinglist.append(d[0]) 
+    elif B[2]*C[2] < 0 :
+        extremalist.append((d[0], d[1]))
+        increasinglist.append(d[0])
+        decreasinglist.append(d[0])
+        if B[2] < 0 and C[2] < 0:
+            print((d[0],d[1]),"is just a 0")
+        elif B[2] < 0 and C[2] > 0:
+            print((d[0],d[1]),"is a local min")
+        elif B[2] > 0 and C[2] < 0:
+            print((d[0],d[1]),"is a local max")
+        zero.append(d)
+    b+=1
+    c+=1
+    if c == e:
+        c=0
 
 print ('the first derivative of your equation is equal to zero at:',extremalist)
 
