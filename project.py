@@ -86,7 +86,7 @@ extremalist=[]                              #here we find where d1 = 0
 increasinglist=[]                           #here we find the interval where it inc/dec
 decreasinglist=[]
 zero=[]
-b=-1
+'''b=-1
 c=1
 e=len(xyderivzip)
 print(e)
@@ -111,9 +111,10 @@ for d in xyderivzip:
     b+=1
     c+=1
     if c == e:
-        c=0
+        c=0'''
 b = -1
 c = 1
+e=len(xyderivzip)
 for d in xyderivzip:
     B=xyderivzip[b]
     C=xyderivzip[c]
@@ -127,11 +128,11 @@ for d in xyderivzip:
         increasinglist.append(d[0])
         decreasinglist.append(d[0])
         if B[2] < 0 and C[2] < 0:
-            print((d[0],d[1]),"is just a 0")
+            print((d[0],round(d[1],2)),"is just a 0")
         elif B[2] < 0 and C[2] > 0:
-            print((d[0],d[1]),"is a local min")
+            print((d[0],round(d[1],2)),"is a local min")
         elif B[2] > 0 and C[2] < 0:
-            print((d[0],d[1]),"is a local max")
+            print((d[0],round(d[1],2)),"is a local max")
         zero.append(d)
     b+=1
     c+=1
