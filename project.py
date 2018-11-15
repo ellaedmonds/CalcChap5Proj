@@ -90,46 +90,61 @@ b = -1
 c = 1
 e=len(xyderivzip)
 for d in xyderivzip:
-    B=xyderivzip[b]
-    C=xyderivzip[c]
-    if d[0] == x1:
+    if d[0] == xcoordlist[0]:
         if d[2] > 0:
-            increasinglist.append(d[0])
-        elif d[2] < 0:
-            decreasinglist.append(d[0])
-    elif d[0] == x2:
-        if d[2] > 0:
-            increasinglist.append(d[0])
-        elif d[2] < 0:
-            decreasinglist.append(d[0])
-    if B[2]*C[2] > 0 :
-        if d[2] > 0:
-            increasinglist.append(d[0])
-        elif d[2] < 0:
-            decreasinglist.append(d[0]) 
-    elif B[2]*C[2] < 0:
-        extremalist.append((d[0], d[1]))
-        if B[2] < 0 and C[2] < 0:
-            print((d[0],round(d[1],2)),"is just a 0")
-        elif B[2] < 0 and C[2] > 0:
-            print((d[0],round(d[1],2)),"is a local min")
-            increasinglist.append(d[0])
-        elif B[2] > 0 and C[2] < 0:
             print((d[0],round(d[1],2)),"is a local max")
-            decreasinglist.append(d[0])
+            zero.append((' ',d[0],'+'))
+        if d[2] < 0:
+            print((d[0],round(d[1],2)),"is a local min")
+            zero.append((' ',d[0],'+'))
+    elif d[0] == xcoordlist[-1]:
+        if d[2] > 0:
+            print((d[0],round(d[1],2)),"is a local max")
+            zero.append(('-',d[0],' '))
+        if d[2] < 0:
+            print((d[0],round(d[1],2)),"is a local min")
+            zero.append(('-',d[0],' '))
+    else: 
+        B=xyderivzip[b]
+        C=xyderivzip[c]
         if d[0] == x1:
-            before = ' '
-        elif B[2] < 0:
-            before = '-'
-        elif B[2] > 0:
-            before = '+'
-        if d[0] == x2:
-            after = ' '
-        elif C[2] < 0:
-            after = '-'
-        elif C[2] > 0:
-            after = '+'
-        zero.append((before,d[0],after))
+            if d[2] > 0:
+                increasinglist.append(d[0])
+            elif d[2] < 0:
+                decreasinglist.append(d[0])
+        elif d[0] == x2:
+            if d[2] > 0:
+                increasinglist.append(d[0])
+            elif d[2] < 0:
+                decreasinglist.append(d[0])
+        if B[2]*C[2] > 0:
+            if d[2] > 0:
+                increasinglist.append(d[0])
+            elif d[2] < 0:
+                decreasinglist.append(d[0]) 
+        elif B[2]*C[2] < 0:
+            extremalist.append((d[0], d[1]))
+            if B[2] < 0 and C[2] < 0:
+                print((d[0],round(d[1],2)),"is just a 0")
+            elif B[2] < 0 and C[2] > 0:
+                print((d[0],round(d[1],2)),"is a local min")
+                increasinglist.append(d[0])
+            elif B[2] > 0 and C[2] < 0:
+                print((d[0],round(d[1],2)),"is a local max")
+                decreasinglist.append(d[0])
+            if d[0] == x1:
+                before = ' '
+            elif B[2] < 0:
+                before = '-'
+            elif B[2] > 0:
+                before = '+'
+            if d[0] == x2:
+                after = ' '
+            elif C[2] < 0:
+                after = '-'
+            elif C[2] > 0:
+                after = '+'
+            zero.append((before,d[0],after))
     b+=1
     c+=1
     if c == e:
