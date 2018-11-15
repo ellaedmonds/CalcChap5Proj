@@ -20,11 +20,8 @@ from math import log, log10, sqrt, log2
 function=input("What function would you like to analyze? ")
 x1=int(input("Where do you want your interval to start? "))
 x2=int(input("Where do you want your interval to end? "))
-#step = float(input("What do you want the step to be? "))
 
-
-print(function)
-
+#print(function)
 
 xcoordlist=[]                               #x values
 for i in range(x1,x2+1):
@@ -65,7 +62,7 @@ for r in xcoordlist:
 
 
 intervalnum=len(ycoordlist1)                #this tells us how long our cordinate lists are 
-print(intervalnum)                              #so we know how long to run the loop
+#print(intervalnum)                              #so we know how long to run the loop
 
 
 derivlist=[]                                #here we will make a list of the derivatives
@@ -90,23 +87,35 @@ b = -1
 c = 1
 e=len(xyderivzip)
 for d in xyderivzip:
+    B=xyderivzip[b]
+    C=xyderivzip[c]
     if d[0] == xcoordlist[0]:
         if d[2] > 0:
-            print((d[0],round(d[1],2)),"is a local max")
+            if d[1] < C[1]:
+                print((d[0],round(d[1],2)),"is a local min")
+            elif d[1] > C[1]:
+                print((d[0],round(d[1],2)),"is a local max")
             zero.append((' ',d[0],'+'))
         if d[2] < 0:
-            print((d[0],round(d[1],2)),"is a local min")
+            if d[1] < B[1]:
+                print((d[0],round(d[1],2)),"is a local min")
+            elif d[1] > B[1]:
+                print((d[0],round(d[1],2)),"is a local max")
             zero.append((' ',d[0],'-'))
     elif d[0] == xcoordlist[-1]:
         if d[2] > 0:
-            print((d[0],round(d[1],2)),"is a local max")
+            if d[1] < C[1]:
+                print((d[0],round(d[1],2)),"is a local min")
+            elif d[1] > C[1]:
+                print((d[0],round(d[1],2)),"is a local max")
             zero.append(('+',d[0],' '))
         if d[2] < 0:
-            print((d[0],round(d[1],2)),"is a local min")
+            if d[1] < B[1]:
+                print((d[0],round(d[1],2)),"is a local min")
+            elif d[1] > B[1]:
+                print((d[0],round(d[1],2)),"is a local max")
             zero.append(('-',d[0],' '))
     else: 
-        B=xyderivzip[b]
-        C=xyderivzip[c]
         if B[2]*d[2] > 0:
             if d[2] > 0:
                 increasinglist.append(d[0])
@@ -139,7 +148,7 @@ for d in xyderivzip:
     if c == e:
         c=0
 
-print(zero)
+#print(zero)
 
 incstart = []
 incend = []
@@ -155,20 +164,25 @@ for d in zero:
     elif d[2] == '-':
         decstart.append(d[1])
         
-print(incstart)
-print(incend)
-print(decstart)
-print(decend)
+#print(incstart)
+#print(incend)
+#print(decstart)
+#print(decend)
+if len(incstart) == 0:
+    print("your function is never increasing.")
+else:
+    print("Your function is increasing from:")
+    for d in incstart:
+        m = incstart.index(d)
+        print(d,"to",incend[m])
 
-print("Your function is increasing from:")
-for d in incstart:
-    m = incstart.index(d)
-    print(d,"to",incend[m])
-    
-print("Your function is decreasing from:")
-for d in decstart:
-    m = decstart.index(d)
-    print(d,"to",decend[m])    
+if len(decstart) == 0:
+    print("Your function is never decreasing.")
+else:
+    print("Your function is decreasing from:")
+    for d in decstart:
+        m = decstart.index(d)
+        print(d,"to",decend[m])    
 
     
 
