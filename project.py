@@ -198,7 +198,7 @@ for d in derivlist:
     y2coordlist2.append(d-0.001)
 
 interval2num=len(y2coordlist1)
-print(interval2num)
+#print(interval2num)
 
 deriv2list=[]
 for i in range(interval2num):
@@ -221,49 +221,49 @@ for d in xyderiv2zip:
     B=xyderiv2zip[b]
     C=xyderiv2zip[c]
     if d[0] == xcoordlist[0]:
-        if d[2] >= 0:
+        if d[3] >= 0:
             poi.append((' ',d[0],'+'))
-        if d[2] <= 0:
+        if d[3] <= 0:
             poi.append((' ',d[0],'-'))
     elif d[0] == xcoordlist[-1]:
-        if d[2] > 0:
+        if d[3] > 0:
             poi.append(('+',d[0],' '))
-        if d[2] < 0:
+        if d[3] < 0:
             poi.append(('-',d[0],' '))
     else: 
-        if B[2]*d[2] > 0:
-            if d[2] > 0:
+        if B[3]*d[3] > 0:
+            if d[3] > 0:
                 cculist.append(d[0])
-            elif d[2] < 0:
+            elif d[3] < 0:
                 ccdlist.append(d[0]) 
-        elif B[2]*d[2] <= 0:
+        elif B[3]*d[3] <= 0:
             poilist.append((d[0], d[1]))
-            if B[2] < 0 and C[2] < 0:
+            if B[3] < 0 and C[3] < 0:
                 print((d[0],round(d[1],2)),"is just a 0")
-            elif B[2] < 0 and C[2] > 0:
+            elif B[3] < 0 and C[2] > 0:
                 print((d[0],round(d[1],2)),"is a poi from ccd to ccu")
                 cculist.append(d[0])
-            elif B[2] > 0 and C[2] < 0:
+            elif B[3] > 0 and C[3] < 0:
                 print((d[0],round(d[1],2)),"is a poi from ccu to ccd")
                 ccdlist.append(d[0])
-            if B[2] < 0:
+            if B[3] < 0:
                 before = '-'
-            elif B[2] > 0:
+            elif B[3] > 0:
                 before = '+'
-            if C[2] < 0:
+            if C[3] < 0:
                 after = '-'
-            elif C[2] > 0:
+            elif C[3] > 0:
                 after = '+'
-            if d[2] == 0:
+            if d[3] == 0:
                 poi.append((before,d[0],after))
-            elif B[2] != 0 and C[2] !=0:
+            elif B[3] != 0 and C[3] !=0:
                 poi.append((before,(B[0]+d[0])/2,after))
     b+=1
     c+=1
     if c == e:
         c=0
 
-print(poi)
+#print(poi)
 
 ccustart = []
 ccuend = []
@@ -277,7 +277,7 @@ for d in zero:
     if d[2] == '+':
         ccustart.append(d[1])
     elif d[2] == '-':
-        ccustart.append(d[1])
+        ccdstart.append(d[1])
         
 #print(ccustart)
 #print(ccuend)
