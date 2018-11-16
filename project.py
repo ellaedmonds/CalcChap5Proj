@@ -207,61 +207,45 @@ for i in range(interval2num):
 #print (deriv2list)
 
 xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
-print(xyderiv2zip)
+#print(xyderiv2zip)
 
 
-extremalist=[]                              #here we find where d1 = 0
-increasinglist=[]                           #here we find the interval where it inc/dec
-decreasinglist=[]
-zero = []
+poilist = []                              #here we find where d2 = 0
+cculist = []                           #here we store the interval where it ccu/ccd
+ccdlist = []
+poi = []
 b = -1
 c = 1
-e=len(xyderivzip)
-for d in xyderivzip:
-    B=xyderivzip[b]
-    C=xyderivzip[c]
+e=len(xyderiv2zip)
+for d in xyderiv2zip:
+    B=xyderiv2zip[b]
+    C=xyderiv2zip[c]
     if d[0] == xcoordlist[0]:
         if d[2] >= 0:
-            if d[1] < C[1]:
-                print((d[0],round(d[1],2)),"is a local min")
-            elif d[1] > C[1]:
-                print((d[0],round(d[1],2)),"is a local max")
-            zero.append((' ',d[0],'+'))
+            poi.append((' ',d[0],'+'))
         if d[2] <= 0:
-            if d[1] < C[1]:
-                print((d[0],round(d[1],2)),"is a local min")
-            elif d[1] > C[1]:
-                print((d[0],round(d[1],2)),"is a local max")
-            zero.append((' ',d[0],'-'))
+            poi.append((' ',d[0],'-'))
     elif d[0] == xcoordlist[-1]:
         if d[2] > 0:
-            if d[1] < B[1]:
-                print((d[0],round(d[1],2)),"is a local min")
-            elif d[1] > B[1]:
-                print((d[0],round(d[1],2)),"is a local max")
-            zero.append(('+',d[0],' '))
+            poi.append(('+',d[0],' '))
         if d[2] < 0:
-            if d[1] < B[1]:
-                print((d[0],round(d[1],2)),"is a local min")
-            elif d[1] > B[1]:
-                print((d[0],round(d[1],2)),"is a local max")
-            zero.append(('-',d[0],' '))
+            poi.append(('-',d[0],' '))
     else: 
         if B[2]*d[2] > 0:
             if d[2] > 0:
-                increasinglist.append(d[0])
+                cculist.append(d[0])
             elif d[2] < 0:
-                decreasinglist.append(d[0]) 
+                ccdlist.append(d[0]) 
         elif B[2]*d[2] <= 0:
-            extremalist.append((d[0], d[1]))
+            poilist.append((d[0], d[1]))
             if B[2] < 0 and C[2] < 0:
                 print((d[0],round(d[1],2)),"is just a 0")
             elif B[2] < 0 and C[2] > 0:
-                print((d[0],round(d[1],2)),"is a local min")
-                increasinglist.append(d[0])
+                print((d[0],round(d[1],2)),"is a poi from ccd to ccu")
+                cculist.append(d[0])
             elif B[2] > 0 and C[2] < 0:
-                print((d[0],round(d[1],2)),"is a local max")
-                decreasinglist.append(d[0])
+                print((d[0],round(d[1],2)),"is a poi from ccu to ccd")
+                ccdlist.append(d[0])
             if B[2] < 0:
                 before = '-'
             elif B[2] > 0:
@@ -271,49 +255,50 @@ for d in xyderivzip:
             elif C[2] > 0:
                 after = '+'
             if d[2] == 0:
-                zero.append((before,d[0],after))
+                poi.append((before,d[0],after))
             elif B[2] != 0 and C[2] !=0:
-                zero.append((before,(B[0]+d[0])/2,after))
+                poi.append((before,(B[0]+d[0])/2,after))
     b+=1
     c+=1
     if c == e:
         c=0
 
-#print(zero)
+print(poi)
 
-incstart = []
-incend = []
-decstart = []
-decend = []
+ccustart = []
+ccuend = []
+ccdstart = []
+ccdend = []
 for d in zero:
     if d[0] == '+':
-        incend.append(d[1])
+        ccuend.append(d[1])
     elif d[0] == '-':
-        decend.append(d[1])
+        ccdend.append(d[1])
     if d[2] == '+':
-        incstart.append(d[1])
+        ccustart.append(d[1])
     elif d[2] == '-':
-        decstart.append(d[1])
+        ccustart.append(d[1])
         
-#print(incstart)
-#print(incend)
-#print(decstart)
-#print(decend)
-if len(incstart) == 0:
-    print("your function is never increasing.")
-else:
-    print("Your function is increasing from:")
-    for d in incstart:
-        m = incstart.index(d)
-        print(d,"to",incend[m])
+#print(ccustart)
+#print(ccuend)
+#print(ccdstart)
+#print(ccdend)
 
-if len(decstart) == 0:
-    print("Your function is never decreasing.")
+if len(ccustart) == 0:
+    print("your function is never ccu.")
 else:
-    print("Your function is decreasing from:")
-    for d in decstart:
-        m = decstart.index(d)
-        print(d,"to",decend[m]) 
+    print("Your function is ccu from:")
+    for d in ccustart:
+        m = ccustart.index(d)
+        print(d,"to",ccuend[m])
+
+if len(ccdstart) == 0:
+    print("Your function is never ccd.")
+else:
+    print("Your function is ccd from:")
+    for d in ccdstart:
+        m = ccdstart.index(d)
+        print(d,"to",ccdend[m]) 
 
     
     
