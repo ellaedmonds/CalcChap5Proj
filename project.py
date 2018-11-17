@@ -325,7 +325,7 @@ purple = Color(0x800080, 1.0)
 purple2 = Color(0x9932CC, 1.0)
                                     #This defines the points that will plot the function graph.
 thinline = LineStyle(1, black)
-points = CircleAsset(5, thinline, blue)
+points = CircleAsset(2, thinline, blue)
                                     #This defines the coordinates to graph the original function. 
 graphycoords=[y*-1 for y in ycoordlist]
 #print(graphycoords)
@@ -340,7 +340,7 @@ for i in xycoords:
     Sprite(points, ((25*(i[0]+20),(25*(i[1]+10)))))
 
                                     #This defines the points that will plot the graph.
-points = CircleAsset(5, thinline, purple)
+points = CircleAsset(2, thinline, purple)
                                      #This defines the coordinates to graph the derivative.
 graphy2coords=[y*-1 for y in derivlist]
 x2coords = xcoordlist
