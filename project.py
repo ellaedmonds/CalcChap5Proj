@@ -20,6 +20,7 @@ from ggame import CircleAsset
 
 #inputs
 function=input("What function would you like to analyze? ")
+print("If you choose a log function, make sure your interval is within the domain :)")
 x1=int(input("Where do you want your interval to start? "))
 x2=int(input("Where do you want your interval to end? "))
 
@@ -36,13 +37,20 @@ for i in range(x1,x2+1):
 #print(xcoordlist)
     
 
-ycoordlist=[]                               # y values
+a=False
+ycoordlist=[]                               #This prints a list of the y values. 
 for r in xcoordlist:
     x=r
     Locfunction=function.lower()
-    y=eval(Locfunction)
-    ycoordlist.append(y)
-#print(ycoordlist)
+    try:
+        y=eval(Locfunction)
+
+        ycoordlist.append(y)
+
+    except: 
+        a=True
+        asymptote=r
+        print("There is a vertical asymptote at x=", asymptote, " in this function!")
 
 
 ycoordlist1=[]                              #this will find the a+.001 for the dq
