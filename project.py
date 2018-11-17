@@ -71,7 +71,7 @@ for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.001)
     derivlist1.append(round(deriv,2))
     derivlist.append(deriv)
-#print (derivlist)
+print (derivlist)
 
 
 #deriv/x value/y value zip
@@ -141,7 +141,7 @@ for d in xyderivzip:
                 after = '+'
             if d[2] == 0:
                 zero.append((before,d[0],after))
-            elif B[2] != 0 and C[2] !=0:
+            elif B[2] != 0 and C[2] != 0:
                 zero.append((before,(B[0]+d[0])/2,after))
     b+=1
     c+=1
@@ -190,22 +190,28 @@ print()
 
 
 y2coordlist1=[]
-for d in derivlist:
-    y2coordlist1.append(d+0.001)
-    
 y2coordlist2=[]
+b = 1
+e = len(derivlist)
 for d in derivlist:
-    y2coordlist2.append(d-0.001)
+    B = derivlist[b]
+    y2coordlist1.append(d)
+    y2coordlist2.append(B)
+    b+=1
+    if b >= e:
+        b = e-1
+
 
 interval2num=len(y2coordlist1)
 #print(interval2num)
-
+                                                    #This creates a list of the rounded second derivatives.
 deriv2list=[]
 for i in range(interval2num):
-    deriv2  = ((y2coordlist1[i])-(y2coordlist2[i]))/(2*0.001)
+    deriv2  = ((y2coordlist2[i])-(y2coordlist1[i]))/(0.1)
     deriv2list.append(round(deriv2,2))
-#print (deriv2list)
-
+print (deriv2list)
+                                                    #This creates a list with the x and y coordinates, 
+                                                       #first derivatives and second derivatives. 
 xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
 #print(xyderiv2zip)
 
@@ -221,14 +227,14 @@ for d in xyderiv2zip:
     B=xyderiv2zip[b]
     C=xyderiv2zip[c]
     if d[0] == xcoordlist[0]:
-        if d[3] >= 0:
+        if C[3] > 0:
             poi.append((' ',d[0],'+'))
-        if d[3] <= 0:
+        if C[3] < 0:
             poi.append((' ',d[0],'-'))
     elif d[0] == xcoordlist[-1]:
-        if d[3] > 0:
+        if B[3] > 0:
             poi.append(('+',d[0],' '))
-        if d[3] < 0:
+        if B[3] < 0:
             poi.append(('-',d[0],' '))
     else: 
         if B[3]*d[3] > 0:
@@ -236,7 +242,7 @@ for d in xyderiv2zip:
                 cculist.append(d[0])
             elif d[3] < 0:
                 ccdlist.append(d[0]) 
-        elif B[3]*d[3] <= 0:
+        else:
             poilist.append((d[0], d[1]))
             if B[3] < 0 and C[3] < 0:
                 print((d[0],round(d[1],2)),"is just a 0")
@@ -254,22 +260,20 @@ for d in xyderiv2zip:
                 after = '-'
             elif C[3] > 0:
                 after = '+'
-            if d[3] == 0:
+            if B[3] != 0 and C[3] != 0:
                 poi.append((before,d[0],after))
-            elif B[3] != 0 and C[3] !=0:
-                poi.append((before,(B[0]+d[0])/2,after))
     b+=1
     c+=1
     if c == e:
         c=0
 
-#print(poi)
+print(poi)
 
 ccustart = []
 ccuend = []
 ccdstart = []
 ccdend = []
-for d in zero:
+for d in poi:
     if d[0] == '+':
         ccuend.append(d[1])
     elif d[0] == '-':
@@ -279,10 +283,10 @@ for d in zero:
     elif d[2] == '-':
         ccdstart.append(d[1])
         
-#print(ccustart)
-#print(ccuend)
-#print(ccdstart)
-#print(ccdend)
+print(ccustart)
+print(ccuend)
+print(ccdstart)
+print(ccdend)
 
 if len(ccustart) == 0:
     print("your function is never ccu.")
