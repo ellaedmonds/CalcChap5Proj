@@ -71,7 +71,7 @@ for s in range(intervalnum):
     deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.001)
     derivlist1.append(round(deriv,2))
     derivlist.append(deriv)
-print (derivlist)
+#print (derivlist)
 
 
 #deriv/x value/y value zip
@@ -209,7 +209,7 @@ deriv2list=[]
 for i in range(interval2num):
     deriv2  = ((y2coordlist2[i])-(y2coordlist1[i]))/(0.1)
     deriv2list.append(round(deriv2,2))
-print (deriv2list)
+#print (deriv2list)
                                                     #This creates a list with the x and y coordinates, 
                                                        #first derivatives and second derivatives. 
 xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
@@ -267,12 +267,17 @@ for d in xyderiv2zip:
     if c == e:
         c=0
 
-print(poi)
+#print(poi)
+if len(poi) == 2:
+    print("There is no point of inflection")
+
+print()
 
 ccustart = []
 ccuend = []
 ccdstart = []
 ccdend = []
+
 for d in poi:
     if d[0] == '+':
         ccuend.append(d[1])
@@ -283,10 +288,10 @@ for d in poi:
     elif d[2] == '-':
         ccdstart.append(d[1])
         
-print(ccustart)
-print(ccuend)
-print(ccdstart)
-print(ccdend)
+#print(ccustart)
+#print(ccuend)
+#print(ccdstart)
+#print(ccdend)
 
 if len(ccustart) == 0:
     print("your function is never ccu.")
@@ -295,6 +300,8 @@ else:
     for d in ccustart:
         m = ccustart.index(d)
         print(d,"to",ccuend[m])
+
+print()
 
 if len(ccdstart) == 0:
     print("Your function is never ccd.")
