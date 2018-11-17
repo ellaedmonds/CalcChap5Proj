@@ -12,9 +12,11 @@ TO DO:
 have figure out how to tell if extrema is abs/local or max/min
 have to figure our when decreasing or increasing interval is a union
 '''
-from math import sin,cos, tan, acos, asin, atan
+from math import sin, cos, tan, acos, asin, atan
 from math import exp, expm1, e, pi
 from math import log, log10, sqrt, log2
+from ggame import App, Color, LineStyle, Sprite
+from ggame import CircleAsset
 
 #inputs
 function=input("What function would you like to analyze? ")
@@ -311,5 +313,44 @@ else:
         m = ccdstart.index(d)
         print(d,"to",ccdend[m]) 
 
-    
+
+#graphing code
+
+
+red = Color(0xff0000, 1.0)
+green = Color(0x00ff00, 1.0)
+blue = Color(0x0000ff, 1.0)
+black = Color(0x000000, 1.0)
+purple = Color(0x800080, 1.0)
+purple2 = Color(0x9932CC, 1.0)
+                                    #This defines the points that will plot the function graph.
+thinline = LineStyle(1, black)
+points = CircleAsset(5, thinline, blue)
+                                    #This defines the coordinates to graph the original function. 
+graphycoords=[y*-1 for y in ycoordlist]
+#print(graphycoords)
+xcoords = xcoordlist
+ycoords= graphycoords
+
+#print(xcoordlist)
+#print(ycoordlist)
+                                    #This graphs the function. 
+xycoords=list(zip(xcoords,ycoords))
+for i in xycoords: 
+    Sprite(points, ((25*(i[0]+20),(25*(i[1]+10)))))
+
+                                    #This defines the points that will plot the graph.
+points = CircleAsset(5, thinline, purple)
+                                     #This defines the coordinates to graph the derivative.
+graphy2coords=[y*-1 for y in derivlist]
+x2coords = xcoordlist
+y2coords = graphy2coords
+xy2coords=list(zip(x2coords,y2coords))
+                                     #This graphs the derivative.
+for i in xy2coords: 
+    Sprite(points, ((25*(i[0]+20)),(25*(i[1]+10))))
+
+myapp = App()
+myapp.run()
+
     
