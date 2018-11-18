@@ -198,30 +198,6 @@ print()
 #second derivatives
 
 
-
-'''y2coordlist1=[]
-y2coordlist2=[]
-b = 1
-e = len(derivlist)
-for d in derivlist:
-    B = derivlist[b]
-    y2coordlist1.append(d)
-    y2coordlist2.append(B)
-    b+=1
-    if b >= e:
-        b = e-1
-
-
-interval2num=len(y2coordlist1)
-#print(interval2num)
-                                                    #This creates a list of the rounded second derivatives.
-deriv2list=[]
-for i in range(interval2num):
-    deriv2  = ((y2coordlist2[i])-(y2coordlist1[i]))/(0.1)
-    deriv2list.append(round(deriv2,2))'''
-#print (deriv2list)
-
-
 ycoordlista=[]                              
 for r in xcoordlist:
     x=r+0.002
