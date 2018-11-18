@@ -199,7 +199,7 @@ print()
 
 
 
-y2coordlist1=[]
+'''y2coordlist1=[]
 y2coordlist2=[]
 b = 1
 e = len(derivlist)
@@ -218,10 +218,65 @@ interval2num=len(y2coordlist1)
 deriv2list=[]
 for i in range(interval2num):
     deriv2  = ((y2coordlist2[i])-(y2coordlist1[i]))/(0.1)
-    deriv2list.append(round(deriv2,2))
+    deriv2list.append(round(deriv2,2))'''
 #print (deriv2list)
-                                                    #This creates a list with the x and y coordinates, 
-                                                       #first derivatives and second derivatives. 
+
+
+ycoordlista=[]                              
+for r in xcoordlist:
+    x=r+0.002
+    Locfunction=function.lower()
+    y=eval(Locfunction)
+    ycoordlista.append(y)
+#print(ycoordlista)
+
+ycoordlistb=[]                              #This will find the y-.001 value for the symmetric differnce quotient. 
+for r in xcoordlist:
+    x=r-0.002
+    Locfunction=function.lower()
+    y=eval(Locfunction)
+    ycoordlistb.append(y)
+#print(ycoordlistb)
+
+intervalnum=len(ycoordlist1)                #This tells us how long our cordinate lists are 
+#print(intervalnum)                            #so we know how long to run the loop. 
+
+derivlist=[]                                #This makes a list of the derivatives, and a rounded list
+derivlist1=[]                                   #of the derivatives. 
+for s in range(intervalnum):
+    deriv  = ((ycoordlist1[s])-(ycoordlist2[s]))/(2*0.001)
+    derivlist1.append(round(deriv,2))
+    derivlist.append(deriv)
+#print (derivlist1)
+#print (derivlist)
+
+derivlista=[]                                #This makes a list of the derivatives, and a rounded list
+derivlista1=[]                                   #of the derivatives. 
+for s in range(intervalnum):
+    deriva  = ((ycoordlista[s])-(ycoordlist[s]))/(2*0.001)
+    #derivlista1.append(round(deriva,2))
+    derivlista.append(deriva)
+#print (derivlista1)
+#print (derivlista)
+
+derivlistb=[]                                #This makes a list of the derivatives, and a rounded list
+derivlistb1=[]                                   #of the derivatives. 
+for s in range(intervalnum):
+    derivb  = ((ycoordlist[s])-(ycoordlistb[s]))/(2*0.001)
+    #derivlistb1.append(round(derivb,2))
+    derivlistb.append(derivb)
+#print (derivlistb1)
+#print (derivlistb)
+    
+deriv2list=[]
+deriv2list1=[]
+for s in range(intervalnum):
+    deriv2  = ((derivlista[s])-(derivlistb[s]))/(2*0.001)
+    #deriv2list1.append(round(deriv2,2))
+    deriv2list.append(deriv2)
+#print(deriv2list1)
+#print (deriv2list)
+
 xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
 #print(xyderiv2zip)
 
@@ -342,10 +397,12 @@ ycoords= graphycoords
 
 #print(xcoordlist)
 #print(ycoordlist)
+a = sqrt(x1**2)
+b = sqrt(x2**2)
                                     #This graphs the function. 
 xycoords=list(zip(xcoords,ycoords))
 for i in xycoords: 
-    Sprite(points, ((25*(i[0]+20),(25*(i[1]+10)))))
+    Sprite(points, ((25*(i[0]+a+2),(25*(i[1]+10)))))
 
                                     #This defines the points that will plot the graph.
 points = CircleAsset(2, thinline, purple)
@@ -356,9 +413,17 @@ y2coords = graphy2coords
 xy2coords=list(zip(x2coords,y2coords))
                                      #This graphs the derivative.
 for i in xy2coords: 
-    Sprite(points, ((25*(i[0]+20)),(25*(i[1]+10))))
+    Sprite(points, ((25*(i[0]+a+b+4)),(25*(i[1]+10))))
+    
+points = CircleAsset(2, thinline, red)
+                                     #This defines the coordinates to graph the derivative.
+graphy3coords=[y*-1 for y in deriv2list]
+x3coords = xcoordlist
+y3coords = graphy3coords
+xy3coords=list(zip(x3coords,y3coords))
+                                     #This graphs the second derivative.
+for i in xy3coords: 
+    Sprite(points, ((25*(i[0]+(2*a)+(2*b)+6)),(25*(i[1]+10))))
 
 myapp = App()
-myapp.run()
-
-    
+myapp.run()  
