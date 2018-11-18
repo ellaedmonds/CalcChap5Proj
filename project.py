@@ -134,7 +134,7 @@ for d in xyderivzip:
         elif B[2]*d[2] <= 0:
             extremalist.append((d[0], d[1]))
             if B[2] < 0 and C[2] < 0:
-                print((d[0],round(d[1],2)),"is just a 0")
+                print('at',d[0],"the derviative DNE")
             elif B[2] < 0 and C[2] > 0:
                 print((d[0],round(d[1],2)),"is a local min")
                 increasinglist.append(d[0])
