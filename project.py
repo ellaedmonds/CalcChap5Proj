@@ -136,7 +136,7 @@ for d in xyderivzip:
             elif B[2] < 0 and C[2] > 0:                                         #if the deriv before is - and the deriv after is + we know it's a lacal min
                 print((d[0],round(d[1],2)),"is a local min")
                 increasinglist.append(d[0])
-            elif B[2] > 0 and C[2] < 0:                                         #if the deriv before is + and the deriv after is - we know it's a lacal min
+            elif B[2] > 0 and C[2] < 0:                                         #if the deriv before is + and the deriv after is - we know it's a lacal max
                 print((d[0],round(d[1],2)),"is a local max")
                 decreasinglist.append(d[0])
             if B[2] < 0:
