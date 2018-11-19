@@ -84,19 +84,19 @@ xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist))
 #print(xyderivzip)
 
 
-extremalist=[]                              #here we find where d1 = 0
-increasinglist=[]                           #here we find the interval where it inc/dec
+extremalist=[]                                  #here we find where d1 = 0
+increasinglist=[]                               #here we find the interval where it inc/dec
 decreasinglist=[]
 zero = []
 b = -1
 c = 1
 e=len(xyderivzip)
 for d in xyderivzip:
-    B=xyderivzip[b]                         #here we got the values for the term before
-    C=xyderivzip[c]                         #here we got the values for the term after
+    B=xyderivzip[b]                                                             #here we got the values for the term before
+    C=xyderivzip[c]                                                             #here we got the values for the term after
     
-    if d[0] == xcoordlist[0]:               #here the program check if we are dealing with the first term
-        if d[2] >= 0:                       #if so this is automatically a max or min depending on if the deriv after it is - or +
+    if d[0] == xcoordlist[0]:                                                   #here the program check if we are dealing with the first term
+        if d[2] >= 0:                                                           #if so this is automatically a max or min depending on if the deriv after it is - or +
             if d[1] < C[1]:                 
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > C[1]:
@@ -109,8 +109,8 @@ for d in xyderivzip:
                 print((d[0],round(d[1],2)),"is a local max")
             zero.append((' ',d[0],'-',round(d[1],2)))
     
-    elif d[0] == xcoordlist[-1]:            #here the program check if we are dealing with the last term
-        if d[2] > 0:                        #if so this is automatically a max or min depending on if the deriv before it is - or +
+    elif d[0] == xcoordlist[-1]:                                                #here the program check if we are dealing with the last term
+        if d[2] > 0:                                                            #if so this is automatically a max or min depending on if the deriv before it is - or +
             if d[1] < B[1]:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > B[1]:
@@ -122,21 +122,21 @@ for d in xyderivzip:
             elif d[1] > B[1]:
                 print((d[0],round(d[1],2)),"is a local max")
             zero.append(('-',d[0],' ',round(d[1],2)))
-    else:                               #if the point is not an endpoint, the loop runs this
-        if B[2]*d[2] > 0:               #here it checks if the prior deriv and its teriv multiply to be more than 0
-            if d[2] > 0:                #given the terms multipy to more than zero (indicating no sign change) 
-                increasinglist.append(d[0])     #if the deriv is greater than 0 then its inc at this point
+    else:                                                                       #if the point is not an endpoint, the loop runs this
+        if B[2]*d[2] > 0:                                                       #here it checks if the prior deriv and its teriv multiply to be more than 0
+            if d[2] > 0:                                                        #given the terms multipy to more than zero (indicating no sign change) 
+                increasinglist.append(d[0])                                     #if the deriv is greater than 0 then its inc at this point
             elif d[2] < 0:
-                decreasinglist.append(d[0])     #if the deriv is less than 0 it is decreasing at the point
+                decreasinglist.append(d[0])                                     #if the deriv is less than 0 it is decreasing at the point
         
-        elif B[2]*d[2] <= 0:            #here we test for if the deriv is 0 the product is negative, insicating a sign change
-            extremalist.append((d[0], d[1]))    #we add the point to the extremalist
-            if B[2] < 0 and C[2] < 0:       #if deriv=0 and no sign change it goes here
+        elif B[2]*d[2] <= 0:                                                    #here we test for if the deriv is 0 the product is negative, insicating a sign change
+            extremalist.append((d[0], d[1]))                                    #we add the point to the extremalist
+            if B[2] < 0 and C[2] < 0:                                           #if deriv=0 and no sign change it goes here
                 print('at',d[0],"the derviative DNE")
-            elif B[2] < 0 and C[2] > 0:     #
+            elif B[2] < 0 and C[2] > 0:                                         #if the deriv before is - and the deriv after is + we know it's a lacal min
                 print((d[0],round(d[1],2)),"is a local min")
                 increasinglist.append(d[0])
-            elif B[2] > 0 and C[2] < 0:
+            elif B[2] > 0 and C[2] < 0:                                         #if the deriv before is + and the deriv after is - we know it's a lacal min
                 print((d[0],round(d[1],2)),"is a local max")
                 decreasinglist.append(d[0])
             if B[2] < 0:
