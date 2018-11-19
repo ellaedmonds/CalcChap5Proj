@@ -105,26 +105,26 @@ for d in xyderivzip:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > C[1]:
                 print((d[0],round(d[1],2)),"is a local max")
-            zero.append((' ',d[0],'+'))
+            zero.append((' ',d[0],'+',round(d[1],2)))
         if d[2] <= 0:
             if d[1] < C[1]:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > C[1]:
                 print((d[0],round(d[1],2)),"is a local max")
-            zero.append((' ',d[0],'-'))
+            zero.append((' ',d[0],'-',round(d[1],2)))
     elif d[0] == xcoordlist[-1]:
         if d[2] > 0:
             if d[1] < B[1]:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > B[1]:
                 print((d[0],round(d[1],2)),"is a local max")
-            zero.append(('+',d[0],' '))
+            zero.append(('+',d[0],' ',round(d[1],2)))
         if d[2] < 0:
             if d[1] < B[1]:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > B[1]:
                 print((d[0],round(d[1],2)),"is a local max")
-            zero.append(('-',d[0],' '))
+            zero.append(('-',d[0],' ',round(d[1],2)))
     else: 
         if B[2]*d[2] > 0:
             if d[2] > 0:
@@ -150,15 +150,46 @@ for d in xyderivzip:
             elif C[2] > 0:
                 after = '+'
             if d[2] == 0:
-                zero.append((before,d[0],after))
+                zero.append((before,d[0],after,round(d[1],2)))
             elif B[2] != 0 and C[2] != 0:
-                zero.append((before,(B[0]+d[0])/2,after))
+                zero.append((before,(B[0]+d[0])/2,after,round(d[1],2)))
     b+=1
     c+=1
     if c == e:
         c=0
 
 #print(zero)
+
+maxlist = []
+minlist = []
+for d in zero:
+    if d == zero[0]:
+        themax = d[3]
+        maxlist.append((d[1],d[3]))
+    elif d[3] > themax:
+        maxlist = []
+        themax = d[3]
+        maxlist.append((d[1],d[3]))
+    elif d[3] == themax:
+        maxlist.append((d[1],d[3]))
+    if d == zero[0]:
+        themin = d[3]
+        minlist.append((d[1],d[3]))
+    elif d[3] < themin:
+        minlist = []
+        themin = d[3]
+        minlist.append((d[1],d[3]))
+    elif d[3] == themin:
+        minlist.append((d[1],d[3]))
+
+print()
+
+for m in maxlist:
+    print (m,"is an absolute max")
+
+for m in minlist:
+    print(m,"is an absolute min")
+    
 
 incstart = []
 incend = []
@@ -378,7 +409,7 @@ b = sqrt(x2**2)
                                     #This graphs the function. 
 xycoords=list(zip(xcoords,ycoords))
 for i in xycoords: 
-    Sprite(points, ((25*(i[0]+a+2),(25*(i[1]+10)))))
+    Sprite(points, ((25*(i[0])+20,(25*(i[1]+10)))))
 
                                     #This defines the points that will plot the graph.
 points = CircleAsset(2, thinline, purple)
@@ -389,7 +420,7 @@ y2coords = graphy2coords
 xy2coords=list(zip(x2coords,y2coords))
                                      #This graphs the derivative.
 for i in xy2coords: 
-    Sprite(points, ((25*(i[0]+a+b+4)),(25*(i[1]+10))))
+    Sprite(points, ((25*(i[0]))+20,(25*(i[1]+10))))
     
 points = CircleAsset(2, thinline, red)
                                      #This defines the coordinates to graph the derivative.
@@ -399,7 +430,10 @@ y3coords = graphy3coords
 xy3coords=list(zip(x3coords,y3coords))
                                      #This graphs the second derivative.
 for i in xy3coords: 
-    Sprite(points, ((25*(i[0]+(2*a)+(2*b)+6)),(25*(i[1]+10))))
+    Sprite(points, ((25*(i[0]))+20),(25*(i[1]+10))))
+
+print('''f(x) graphed in blue, f'(x) graphed in purple, f"(x) graphed in red''')
+
 
 myapp = App()
 myapp.run()  
