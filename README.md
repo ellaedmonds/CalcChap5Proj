@@ -5,7 +5,7 @@ USER MANUEL:
 
 Insert your equation in python format in the first input bubble
   Equations that can be handled:
-   - Quadratics, all in format: x3 = (x**3) and (x+2)**2 must be writen as (x**2)+(4*x)+4
+   - Quadratics, all in format: x3 = (x**3) and (x+2)^2 must be writen as (x**2)+(4*x)+4
    - Trig: sin(x), cos(x), tan(x), asin(x), acos(x), atan(x)
    - Logarithmic, only: e, log, log10, log2
    - Other usable math tools: sqrt, pi, exp, expm1
