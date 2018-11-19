@@ -12,7 +12,7 @@ Insert your equation in python format in the first input bubble
 
 *****In addition for log and square root functions the interval you select must be in the domain of the function, the program will remind you of this.*****
 
-Insert the starting point and then the end point of the interval for which you would like to analyze the function (note that the longer the interval, the longer the analyzation process will take)
+Insert the starting point and then the end point of the interval for which you would like to analyze the function. THESE NUMBERS MUST BE INTEGERS! (note that the longer the interval, the longer the analyzation process will take)
 
 ISSUES REMAINING: 
 Unfortunately, our program has an issue running 1/x functions due to python’s difficulty in dealing with asymptotes. 
