@@ -310,10 +310,10 @@ for d in xyderiv2zip:
             if B[3] < 0 and C[3] < 0:
                 print((d[0],round(d[1],2)),"is just a 0")
             elif B[3] < 0 and C[2] > 0:
-                print((d[0],round(d[1],2)),"is a poi from ccd to ccu")
+                print((d[0],round(d[1],2)),"is a poi from concave down to concave up")
                 cculist.append(d[0])
             elif B[3] > 0 and C[3] < 0:
-                print((d[0],round(d[1],2)),"is a poi from ccu to ccd")
+                print((d[0],round(d[1],2)),"is a poi from concave up to concave down")
                 ccdlist.append(d[0])
             if B[3] < 0:
                 before = '-'
@@ -357,9 +357,9 @@ for d in poi:
 #print(ccdend)
 
 if len(ccustart) == 0:
-    print("your function is never ccu.")
+    print("your function is never concave up.")
 else:
-    print("Your function is ccu from:")
+    print("Your function is concave up from:")
     for d in ccustart:
         m = ccustart.index(d)
         print(d,"to",ccuend[m])
@@ -367,9 +367,9 @@ else:
 print()
 
 if len(ccdstart) == 0:
-    print("Your function is never ccd.")
+    print("Your function is never concave down.")
 else:
-    print("Your function is ccd from:")
+    print("Your function is concave down from:")
     for d in ccdstart:
         m = ccdstart.index(d)
         print(d,"to",ccdend[m]) 
