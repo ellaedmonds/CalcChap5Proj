@@ -84,8 +84,8 @@ xyderivzip=list(zip(xcoordlist, ycoordlist, derivlist))
 #print(xyderivzip)
 
 
-extremalist=[]                                  #here we find where d1 = 0
-increasinglist=[]                               #here we find the interval where it inc/dec
+extremalist=[]                                  #here we store the extrema points
+increasinglist=[]                               #here we store the interval where it inc/dec
 decreasinglist=[]
 zero = []
 b = -1
@@ -287,26 +287,26 @@ xyderiv2zip=list(zip(xcoordlist, ycoordlist, derivlist, deriv2list))
 #print(xyderiv2zip)
 
 
-poilist = []                              #here we find where d2 = 0
-cculist = []                           #here we store the interval where it ccu/ccd
+poilist = []                        #here we store the points of inflection
+cculist = []                           #here we store the interval where it is ccu/ccd
 ccdlist = []
 poi = []
 b = -1
 c = 1
-e=len(xyderiv2zip)
+e=len(xyderiv2zip)                  #THE TECHNIQUE HERE IS IDENTICLE TO THE MAX/MIN PART
 for d in xyderiv2zip:
     B=xyderiv2zip[b]
     C=xyderiv2zip[c]
     if d[0] == xcoordlist[0]:
         if C[3] > 0:
-            poi.append((' ',d[0],'+'))
+            poi.append((' ',d[0],'+'))      
         if C[3] < 0:
-            poi.append((' ',d[0],'-'))
+            poi.append((' ',d[0],'-'))      
     elif d[0] == xcoordlist[-1]:
         if B[3] > 0:
-            poi.append(('+',d[0],' '))
+            poi.append(('+',d[0],' '))      
         if B[3] < 0:
-            poi.append(('-',d[0],' '))
+            poi.append(('-',d[0],' '))      
     else: 
         if B[3]*d[3] > 0:
             if d[3] > 0:
@@ -351,13 +351,13 @@ ccdend = []
 
 for d in poi:
     if d[0] == '+':
-        ccuend.append(d[1])
+        ccuend.append(d[1])         #if d[0] is + we know that d[1] will be the ending of the ccu interval
     elif d[0] == '-':
-        ccdend.append(d[1])
+        ccdend.append(d[1])         #if d[0] is - we know that d[1] will be the ending of the ccd interval
     if d[2] == '+':
-        ccustart.append(d[1])
+        ccustart.append(d[1])       #if d[2] is + we know that d[1] will be the begining of the ccu interval
     elif d[2] == '-':
-        ccdstart.append(d[1])
+        ccdstart.append(d[1])       #if d[2] is - we know that d[1] will be the begining of the ccd interval
         
 #print(ccustart)
 #print(ccuend)
