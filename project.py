@@ -139,7 +139,7 @@ for d in xyderivzip:
             elif B[2] > 0 and C[2] < 0:                                         #if the deriv before is + and the deriv after is - we know it's a lacal max
                 print((d[0],round(d[1],2)),"is a local max")
                 decreasinglist.append(d[0])
-            if B[2] < 0:
+            if B[2] < 0:                            #here we add + or - to our zero list indicating if the function is increasing or decreasing before our extrema
                 before = '-'
             elif B[2] > 0:
                 before = '+'
@@ -150,7 +150,7 @@ for d in xyderivzip:
             if d[2] == 0:
                 zero.append((before,d[0],after,round(d[1],2)))
             elif B[2] != 0 and C[2] != 0:
-                zero.append((before,(B[0]+d[0])/2,after,round(d[1],2)))
+                zero.append((before,(B[0]+d[0])/2,after,round(d[1],2)))         #we make the zero list to work with later
     b+=1
     c+=1
     if c == e:
@@ -162,15 +162,16 @@ maxlist = []
 minlist = []
 for d in zero:
     if d == zero[0]:
-        themax = d[3]
+        themax = d[3]                   #sets "themax" as first y
         maxlist.append((d[1],d[3]))
-    elif d[3] > themax:
-        maxlist = []
-        themax = d[3]
-        maxlist.append((d[1],d[3]))
+    elif d[3] > themax:                 #if a value is greater than the max it 
+        maxlist = []                        #resets the list of absmax points 
+        themax = d[3]                       #resets what "themax" is
+        maxlist.append((d[1],d[3]))         #added the (x,y) point
     elif d[3] == themax:
-        maxlist.append((d[1],d[3]))
-    if d == zero[0]:
+        maxlist.append((d[1],d[3]))     #if the y is equal to the max it just adds the pount to the list
+    
+    if d == zero[0]:                    #here we do the same thing as we did for the max but with the min
         themin = d[3]
         minlist.append((d[1],d[3]))
     elif d[3] < themin:
@@ -193,15 +194,15 @@ incstart = []
 incend = []
 decstart = []
 decend = []
-for d in zero:
-    if d[0] == '+':
-        incend.append(d[1])
+for d in zero:                  #here we use the zero list to determine the start values of inc and dec invervals
+    if d[0] == '+':                 
+        incend.append(d[1])     #if d[0] is + we know that d[1] will be the end of the increasing interval
     elif d[0] == '-':
-        decend.append(d[1])
+        decend.append(d[1])     #if d[0] is - we know that d[1] will be the end of the decreasing interval
     if d[2] == '+':
-        incstart.append(d[1])
+        incstart.append(d[1])   #if d[2] is + we know that d[1] will be the begining of the increasing interval
     elif d[2] == '-':
-        decstart.append(d[1])
+        decstart.append(d[1])   #if d[2] is - we know that d[1] will be the begining of the decreasing interval
 print()
 #print(incstart)
 #print(incend)
