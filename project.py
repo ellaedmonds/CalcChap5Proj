@@ -14,7 +14,11 @@ function=input("What function would you like to analyze? ")
 print("If you choose a log or sqrt function, make sure your interval is within the domain :)")
 x1=int(input("Where do you want your interval to start? "))
 x2=int(input("Where do you want your interval to end? "))
-
+print()
+print('f(x) graphed in blue')
+print("f'(x) graphed in purple")
+print('''f"(x) graphed in red''')
+print()
 #print(function)
 
 xcoordlist=[]                               #x values
@@ -88,11 +92,12 @@ b = -1
 c = 1
 e=len(xyderivzip)
 for d in xyderivzip:
-    B=xyderivzip[b]
-    C=xyderivzip[c]
-    if d[0] == xcoordlist[0]:
-        if d[2] >= 0:
-            if d[1] < C[1]:
+    B=xyderivzip[b]                         #here we got the values for the term before
+    C=xyderivzip[c]                         #here we got the values for the term after
+    
+    if d[0] == xcoordlist[0]:               #here the program check if we are dealing with the first term
+        if d[2] >= 0:                       #if so this is automatically a max or min depending on if the deriv after it is - or +
+            if d[1] < C[1]:                 
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > C[1]:
                 print((d[0],round(d[1],2)),"is a local max")
@@ -103,8 +108,9 @@ for d in xyderivzip:
             elif d[1] > C[1]:
                 print((d[0],round(d[1],2)),"is a local max")
             zero.append((' ',d[0],'-',round(d[1],2)))
-    elif d[0] == xcoordlist[-1]:
-        if d[2] > 0:
+    
+    elif d[0] == xcoordlist[-1]:            #here the program check if we are dealing with the last term
+        if d[2] > 0:                        #if so this is automatically a max or min depending on if the deriv before it is - or +
             if d[1] < B[1]:
                 print((d[0],round(d[1],2)),"is a local min")
             elif d[1] > B[1]:
@@ -116,17 +122,18 @@ for d in xyderivzip:
             elif d[1] > B[1]:
                 print((d[0],round(d[1],2)),"is a local max")
             zero.append(('-',d[0],' ',round(d[1],2)))
-    else: 
-        if B[2]*d[2] > 0:
-            if d[2] > 0:
-                increasinglist.append(d[0])
+    else:                               #if the point is not an endpoint, the loop runs this
+        if B[2]*d[2] > 0:               #here it checks if the prior deriv and its teriv multiply to be more than 0
+            if d[2] > 0:                #given the terms multipy to more than zero (indicating no sign change) 
+                increasinglist.append(d[0])     #if the deriv is greater than 0 then its inc at this point
             elif d[2] < 0:
-                decreasinglist.append(d[0]) 
-        elif B[2]*d[2] <= 0:
-            extremalist.append((d[0], d[1]))
-            if B[2] < 0 and C[2] < 0:
+                decreasinglist.append(d[0])     #if the deriv is less than 0 it is decreasing at the point
+        
+        elif B[2]*d[2] <= 0:            #here we test for if the deriv is 0 the product is negative, insicating a sign change
+            extremalist.append((d[0], d[1]))    #we add the point to the extremalist
+            if B[2] < 0 and C[2] < 0:       #if deriv=0 and no sign change it goes here
                 print('at',d[0],"the derviative DNE")
-            elif B[2] < 0 and C[2] > 0:
+            elif B[2] < 0 and C[2] > 0:     #
                 print((d[0],round(d[1],2)),"is a local min")
                 increasinglist.append(d[0])
             elif B[2] > 0 and C[2] < 0:
@@ -424,9 +431,6 @@ xy3coords=list(zip(x3coords,y3coords))
                                      #This graphs the second derivative.
 for i in xy3coords: 
     Sprite(points, ((25*(i[0]+a+2),(25*(i[1]+10)))))
-
-print('''f(x) graphed in blue, f'(x) graphed in purple, f"(x) graphed in red''')
-
 
 myapp = App()
 myapp.run()  
