@@ -294,7 +294,7 @@ poi = []
 b = -1
 c = 1
 e=len(xyderiv2zip)                  #THE TECHNIQUE HERE IS IDENTICLE TO THE MAX/MIN PART
-for d in xyderiv2zip:
+for d in xyderiv2zip:                   #just using the the second derivative instead of the first
     B=xyderiv2zip[b]
     C=xyderiv2zip[c]
     if d[0] == xcoordlist[0]:
