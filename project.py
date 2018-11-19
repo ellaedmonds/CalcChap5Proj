@@ -394,7 +394,7 @@ black = Color(0x000000, 1.0)
 purple = Color(0x800080, 1.0)
 purple2 = Color(0x9932CC, 1.0)
                                     #This defines the points that will plot the function graph.
-thinline = LineStyle(1, black)
+thinline = LineStyle(1, blue)
 points = CircleAsset(2, thinline, blue)
                                     #This defines the coordinates to graph the original function. 
 graphycoords=[y*-1 for y in ycoordlist]
@@ -409,9 +409,10 @@ b = sqrt(x2**2)
                                     #This graphs the function. 
 xycoords=list(zip(xcoords,ycoords))
 for i in xycoords: 
-    Sprite(points, ((25*(i[0])+20,(25*(i[1]+10)))))
+    Sprite(points, ((25*(i[0]+a+2),(25*(i[1]+10)))))
 
                                     #This defines the points that will plot the graph.
+thinline = LineStyle(1, purple)
 points = CircleAsset(2, thinline, purple)
                                      #This defines the coordinates to graph the derivative.
 graphy2coords=[y*-1 for y in derivlist]
@@ -420,8 +421,9 @@ y2coords = graphy2coords
 xy2coords=list(zip(x2coords,y2coords))
                                      #This graphs the derivative.
 for i in xy2coords: 
-    Sprite(points, ((25*(i[0]))+20,(25*(i[1]+10))))
-    
+    Sprite(points, ((25*(i[0]+a+2),(25*(i[1]+10)))))
+
+thinline = LineStyle(1, red)    
 points = CircleAsset(2, thinline, red)
                                      #This defines the coordinates to graph the derivative.
 graphy3coords=[y*-1 for y in deriv2list]
@@ -430,7 +432,7 @@ y3coords = graphy3coords
 xy3coords=list(zip(x3coords,y3coords))
                                      #This graphs the second derivative.
 for i in xy3coords: 
-    Sprite(points, ((25*(i[0]))+20),(25*(i[1]+10))))
+    Sprite(points, ((25*(i[0]+a+2),(25*(i[1]+10)))))
 
 print('''f(x) graphed in blue, f'(x) graphed in purple, f"(x) graphed in red''')
 
