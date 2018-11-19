@@ -1,7 +1,7 @@
 # CalcChap5Proj
 Q2 Mr. Donnelly Calc Project Katie and Ella
 
-USER MANUEL:
+USER MANUAL:
 
 Insert your equation in python format in the first input bubble
   Equations that can be handled:
